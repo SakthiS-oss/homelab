@@ -189,16 +189,6 @@ Error: Connection activation failed: No suitable device found for this connectio
 
 ---
 
-## What I'd tell myself next time
-
-1. **Verify after every step.** Every problem above was easy to fix because I caught it one step later, not ten.
-2. **Know where a failure comes from.** "Refused," "timed out," and "no suitable device" each point to a different layer.
-3. **Read logs when things work, too.** The 1.1.1.0 typo was invisible from the outside.
-4. **Clones carry baggage.** Hostname, machine ID, registration, and MAC address all came along.
-5. **Get off the console fast.** SSH from a real terminal made everything after it faster.
-
----
-
 ## Next Goals
 
 - [ ] Screenshot the DHCP exchange (Discover → Offer → Request → Ack) in `tcpdump`
