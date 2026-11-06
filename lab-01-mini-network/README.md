@@ -199,7 +199,7 @@ Error: Connection activation failed: No suitable device found for this connectio
 
 ---
 
-## Still unfinished
+## Next Goals
 
 - [ ] Screenshot the DHCP exchange (Discover → Offer → Request → Ack) in `tcpdump`
 - [ ] Regenerate `client`'s MAC address
@@ -211,5 +211,3 @@ Error: Connection activation failed: No suitable device found for this connectio
   - [ ] Compare a stopped DNS service with a firewall-blocked one
   - [ ] 10% packet loss with `netem`, and watch the retransmits
   - [ ] MTU mismatch
-
-*Not finished, and I'm fine with that. The next lab starts from here.*
