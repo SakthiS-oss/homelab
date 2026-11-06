@@ -127,16 +127,6 @@ sudo nmcli con up lab
 
 ## Where it cracked
 
-Every struggle, in the order it happened. Each one taught me something.
-
-### The installer wouldn't let me click
-VirtualBox kept asking to "capture" my mouse, and once it did, the cursor didn't work in the RHEL installer. **Mouse Integration** was greyed out, because the installer doesn't support it.
-**Fix:** I finished the whole installer from the keyboard: Tab, Enter, and `Alt+D` for *Done*.
-
-
-### The console froze
-The VM stopped accepting input, even from the on-screen keyboard.
-**Fix:** `Machine → Reset`. The hostname change had already been saved to disk, so nothing was lost.
 
 ### A kernel update hid in my package install
 Installing `kernel-modules-extra` (which provides `netem`) pulled in a **newer kernel** (`211.74.1`) while I was still running `211.7.3`, so the module wouldn't load until I rebooted. The same screenshot showed a second problem: **`enp0s8` didn't exist**, because I'd never enabled the second adapter on `server`.
@@ -145,9 +135,8 @@ Installing `kernel-modules-extra` (which provides `netem`) pulled in a **newer k
 ![kernel and missing nic](screenshots/06-new-kernel-no-enp0s8.png)
 ![fixed](screenshots/07-server-new-kernel-enp0s8.png)
 
-### SSH: "Connection refused"
-I couldn't paste into the VirtualBox console, so I set up SSH from PowerShell through a NAT port forward. It was refused, because I hadn't clicked OK, so the rule was never applied.
-**Lesson:** "refused" on `127.0.0.1:2222` meant *nothing on Windows was listening*, not a problem with SSH inside the VM. Knowing which machine is refusing narrows the search fast.
+### SSH
+I couldn't paste into the VirtualBox console, so I set up SSH from PowerShell through a NAT port forward. Didn't work at first because I forgot to apply the changes.
 
 ![refused](screenshots/08-ssh-connection-refused.png)
 ![not applied](screenshots/09-port-forward-not-applied.png)
