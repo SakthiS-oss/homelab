@@ -1,8 +1,6 @@
 # Lab 01: A Small Network, Imperfectly Built
 
-> *Wabi-sabi: the beauty of things imperfect, impermanent, and incomplete.*
->
-> This lab is all three. It works, but it took a lot of wrong turns to get here, and I kept them in. The mistakes taught me more than the commands that worked the first time.
+> TLDR: I built a small two-machine network on RHEL 10.2 VMs, where one server acts as the entire network for a client: it hands out IP addresses over DHCP with dnsmasq, answers DNS queries, and routes and NATs the client’s traffic to the internet using firewalld zones and policies.
 
 ---
 
