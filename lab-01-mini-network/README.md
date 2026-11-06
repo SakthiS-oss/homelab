@@ -135,13 +135,6 @@ Every struggle, in the order it happened. Each one taught me something.
 VirtualBox kept asking to "capture" my mouse, and once it did, the cursor didn't work in the RHEL installer. **Mouse Integration** was greyed out, because the installer doesn't support it.
 **Fix:** I finished the whole installer from the keyboard: Tab, Enter, and `Alt+D` for *Done*.
 
-![mouse capture](screenshots/01-installer-mouse-capture.png)
-
-### I accidentally renamed the machine to "ctl"
-I meant to type `hostnamectl` and typed `sudo hostname ctl`. With an argument, `hostname` *sets* the hostname, so the machine was briefly called `ctl`.
-**Lesson:** `hostnamectl` with no arguments shows the hostname; `hostname <word>` changes it. Read commands before pressing Enter, especially with sudo.
-
-![hostname typo](screenshots/03-hostname-ctl-typo.png)
 
 ### The console froze
 The VM stopped accepting input, even from the on-screen keyboard.
