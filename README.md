@@ -1,5 +1,3 @@
-# infra-labs
-
 A home lab for learning Linux, networking, cloud, and security by building things, breaking them on purpose, and writing up what happened, including the mistakes.
 
 > Nothing here is finished. Each lab records what worked, what didn't, and what I learned from the gap.
