@@ -185,6 +185,9 @@ All four steps, captured on `server` after deleting `client`'s old lease so it h
 ```bash
 sudo tcpdump -l -n -v -i enp0s8 port 67 or port 68 | grep -E "^[0-9]|DHCP-Message"
 ```
+![DHCP exchange](screenshots/22.png)
+
+**Discover → Offer → Request → ACK** in about 24 milliseconds.
 ---
 
 ## Next Goals
@@ -199,7 +202,3 @@ sudo tcpdump -l -n -v -i enp0s8 port 67 or port 68 | grep -E "^[0-9]|DHCP-Messag
   - [ ] 10% packet loss with `netem`, and watch the retransmits
   - [ ] MTU mismatch
 
----
-![DHCP exchange](screenshots/22.png)
-
-**Discover → Offer → Request → ACK** in about 24 milliseconds.
