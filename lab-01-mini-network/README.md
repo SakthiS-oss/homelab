@@ -176,11 +176,19 @@ Error: Connection activation failed: No suitable device found for this connectio
 - The clone kept `server`'s MAC address (`08:00:27:c7:d2:b0`). It's harmless because the two adapters sit on different networks, but it's not something to do on a real network.
 - `server` shows up as `server.umd.edu`, because VirtualBox's NAT passed along my campus network's domain.
 
+
+
+## The DHCP exchange
+
+All four steps, captured on `server` after deleting `client`'s old lease so it had to start from scratch:
+
+```bash
+sudo tcpdump -l -n -v -i enp0s8 port 67 or port 68 | grep -E "^[0-9]|DHCP-Message"
+```
 ---
 
 ## Next Goals
 
-- [ ] Screenshot the DHCP exchange (Discover → Offer → Request → Ack) in `tcpdump`
 - [ ] Regenerate `client`'s MAC address
 - [ ] Read up on `rp_filter`, and when strict mode breaks things
 - [ ] Break-and-fix challenges:
@@ -190,3 +198,8 @@ Error: Connection activation failed: No suitable device found for this connectio
   - [ ] Compare a stopped DNS service with a firewall-blocked one
   - [ ] 10% packet loss with `netem`, and watch the retransmits
   - [ ] MTU mismatch
+
+---
+![DHCP exchange](screenshots/22.png)
+
+**Discover → Offer → Request → ACK** in about 24 milliseconds.
