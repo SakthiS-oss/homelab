@@ -1,12 +1,6 @@
-# Lab 01, Part 2: Break It on Purpose
-
-> Part 1 built the network. Part 2 breaks it one piece at a time, to learn what each piece was actually doing.
->
+# Challenge 1: Remove the forwarding policy
 > Before I broke anything on purpose, it broke on its own after a reboot. That's in here too.
 
----
-
-## Challenge 1: Remove the forwarding policy
 
 ### The break
 The `int2ext` policy is what allows lab traffic to pass through `server` to the internet. I disabled it by removing its egress zone, and turned on logging for every packet the firewall refuses:
