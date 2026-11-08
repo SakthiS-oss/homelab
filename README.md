@@ -4,6 +4,8 @@ A home lab for learning Linux, networking, cloud, and security by building thing
 
 > Nothing here is finished. Each lab records what worked, what didn't, and what I learned from the gap.
 
+**Labs:** [Lab 01: A Small Network, Imperfectly Built](lab-01-mini-network/)
+
 ---
 
 ## Current topology
@@ -42,35 +44,61 @@ Two RHEL 10.2 VMs on VirtualBox. `server` is the whole network for `client`: its
 
 **Stack:** RHEL 10.2 · VirtualBox · NetworkManager (`nmcli`) · firewalld · dnsmasq · tcpdump · systemd
 
+---
 
-## Roadmap
+## The plan
 
-**Phase 1: Linux and networking** *(now)*
+### Phase 1: Linux and networking *(now)*
+Build a real network, and understand every packet that crosses it.
+
 - [x] Two-host routed network with DHCP, DNS, and NAT
 - [x] Break-and-fix: forwarding, NAT
 - [ ] Break-and-fix: packet loss, MTU
-- [ ] Quick wins: DHCP reservation, NTP, central logging
-- [ ] Arduino UNO Q joins the network as a real device: scan, audit, harden
-- [ ] Dynamic routing with FRRouting: static routes → OSPF → BGP → a small leaf-spine fabric
-- [ ] Python automation that checks network state against the intended design
+- [ ] Quick wins: DHCP reservation, `server` as the lab's NTP source, central logging
+- [ ] **Arduino UNO Q** joins as a real physical device: scan it, audit it, harden it
+- [ ] **Dynamic routing with FRRouting:** static routes → OSPF → BGP → a small leaf-spine data-center fabric
+- [ ] **Python automation** that pulls state from every device and checks it against the intended design
 
-**Phase 2: Cloud**
-- [ ] WireGuard tunnel connecting this lab to an AWS VPC (hybrid network)
+### Phase 2: Cloud
+Extend the lab into AWS, so home and cloud act like one network.
 
-**Phase 3: Security**
-- [ ] Attack the lab from a Kali VM
-- [ ] Detect it with Suricata/Zeek and a SIEM
-- [ ] Respond and clean up
+- [ ] **WireGuard tunnel** from `server` to a small hub instance in an AWS VPC
+- [ ] Routing across the tunnel in both directions: lab ↔ private cloud subnet
+- [ ] Problems to work through on purpose: overlapping address ranges, NAT traversal, and AWS's source/destination check
+
+### Phase 3: Security
+Attack everything built in Phases 1 and 2, detect it, and clean it up.
+
+- [ ] **Attack:** a Kali VM scanning and exploiting intentionally vulnerable targets on the lab network
+- [ ] **Detect:** an IDS (Suricata or Zeek) on `server`, since all traffic already passes through it, plus a SIEM collecting logs from every machine
+- [ ] **Respond:** find how the attacker got in, remove them, and close the hole. Practice with safe stand-ins first (EICAR, Atomic Red Team)
 
 ---
 
-## How each lab is written
+## Where it's headed
 
-Every lab follows the same shape:
-- **What I built**, with a diagram
-- **The build**: configs and commands
-- **Proof it works**, with screenshots and captures
-- **Where it cracked**: each problem as symptom, cause, fix, and lesson
-- **Still unfinished**
+A rough sketch of the lab once all three phases are in place:
 
-The "Where it cracked" sections are the most important part. Most of what I've learned came from things going wrong.
+```
+                         Internet
+                            │
+                ┌───────────┴───────────┐
+                │        server         │──── WireGuard ────► AWS VPC
+                │ router · NAT · fw     │                    ├─ hub (public subnet)
+                │ DHCP · DNS · NTP      │                    └─ app server (private)
+                │ IDS · log collector   │
+                └───┬──────────────┬────┘
+                    │              │
+              labnet 10.0.0.0/24   │   routing lab (containerlab + FRR)
+                    │              │      spine1 ── spine2
+         ┌──────────┼─────────┐    │        │  ╲  ╱  │
+         │          │         │    │        │   ╳    │      BGP everywhere
+      client     UNO Q      Kali   │      leaf1   leaf2
+      (RHEL)   (Debian +  (attacker)          │       │
+               STM32)                       hosts   hosts
+
+      monitoring: Prometheus + Grafana scraping every box
+      automation: Python checks for "is the network what I designed?"
+```
+
+Hardware comes later: the plan is to move from VirtualBox on a laptop to a small always-on mini PC running Proxmox, plus a managed switch for real VLANs.
