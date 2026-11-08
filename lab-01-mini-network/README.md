@@ -1,3 +1,5 @@
+# homelab
+
 A home lab for learning Linux, networking, cloud, and security by building things, breaking them on purpose, and writing up what happened, including the mistakes.
 
 > Nothing here is finished. Each lab records what worked, what didn't, and what I learned from the gap.
@@ -49,11 +51,12 @@ Two RHEL 10.2 VMs on VirtualBox. `server` is the whole network for `client`: its
 
 ## Labs
 
-### 🌐 Network
-| Lab | What it covers |
+### 🌐 Lab 01: A Small Network, Imperfectly Built
+| Part | What it covers |
 |---|---|
-| [01 · A Small Network, Imperfectly Built](network/lab-01-mini-network/) | Building the topology above: DHCP and DNS with dnsmasq, routing and NAT with firewalld zones and policies |
-| [01 · Part 2: Break It on Purpose](network/lab-01-mini-network/PART-2.md) | Break-and-fix challenges: tracing a forwarding failure through packet captures and firewall logs, plus a boot-time race in dnsmasq |
+| [The build](lab-01-mini-network/lab1.md) | Building the topology above: DHCP and DNS with dnsmasq, routing and NAT with firewalld zones and policies |
+| [Challenge 1: Remove forwarding](lab-01-mini-network/challenge1.md) | Tracing a forwarding failure through packet captures and firewall reject logs, plus a boot-time race in dnsmasq |
+| [Challenge 2: Turn off NAT](lab-01-mini-network/challenge2.md) | Watching packets leave with an untranslated private address, and why the replies never return |
 
 ---
 
@@ -61,8 +64,9 @@ Two RHEL 10.2 VMs on VirtualBox. `server` is the whole network for `client`: its
 
 **Phase 1: Linux and networking** *(now)*
 - [x] Two-host routed network with DHCP, DNS, and NAT
-- [ ] Remaining break-and-fix challenges: NAT, packet loss, MTU
-- [ ] DHCP reservation, NTP, central logging
+- [x] Break-and-fix: forwarding, NAT
+- [ ] Break-and-fix: packet loss, MTU
+- [ ] Quick wins: DHCP reservation, NTP, central logging
 - [ ] Arduino UNO Q joins the network as a real device: scan, audit, harden
 - [ ] Dynamic routing with FRRouting: static routes → OSPF → BGP → a small leaf-spine fabric
 - [ ] Python automation that checks network state against the intended design
