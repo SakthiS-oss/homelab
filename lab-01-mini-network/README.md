@@ -1,4 +1,4 @@
-# Lab 01: A Small Network, Imperfectly Built
+# Lab 01: Small Network
 
 Two RHEL 10.2 VMs, where one is the other's entire network. Built by hand, then broken on purpose one piece at a time.
 
