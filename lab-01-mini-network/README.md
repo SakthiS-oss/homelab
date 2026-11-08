@@ -69,10 +69,8 @@ The full list is in each writeup. These taught the most:
 - [x] Full DHCP exchange captured
 - [x] Challenge 1: forwarding
 - [x] Challenge 2: NAT
-- [ ] Challenge 5: packet loss
-- [ ] Challenge 6: MTU mismatch
-- [ ] Regenerate `client`'s SSH host keys and MAC address
-- [ ] Read up on `rp_filter`
+- [x] Challenge 3: packet loss
+- [ ] Challenge 4: MTU mismatch
 
 ---
 
