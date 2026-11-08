@@ -53,8 +53,7 @@ Build a real network, and understand every packet that crosses it.
 
 - [x] Two-host routed network with DHCP, DNS, and NAT
 - [x] Break-and-fix: forwarding, NAT
-- [ ] Break-and-fix: packet loss, MTU
-- [ ] Quick wins: DHCP reservation, `server` as the lab's NTP source, central logging
+- [x] Break-and-fix: packet loss, MTU
 - [ ] **Arduino UNO Q** joins as a real physical device: scan it, audit it, harden it
 - [ ] **Dynamic routing with FRRouting:** static routes → OSPF → BGP → a small leaf-spine data-center fabric
 - [ ] **Python automation** that pulls state from every device and checks it against the intended design
