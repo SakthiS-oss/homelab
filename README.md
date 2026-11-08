@@ -4,7 +4,7 @@ A home lab for learning Linux, networking, cloud, and security by building thing
 
 > Nothing here is finished. Each lab records what worked, what didn't, and what I learned from the gap.
 
-**Labs:** [Lab 01: A Small Network, Imperfectly Built](lab-01-mini-network/)
+**Labs:** [Lab 01: A Small Network](lab-01-mini-network/)
 
 ---
 
