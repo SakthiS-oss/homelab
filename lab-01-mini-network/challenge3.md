@@ -163,8 +163,6 @@ Resuming the paused capture with `fg` left a nearly empty `/tmp/loss.pcap` (24 b
 ### The capture started late
 tcpdump printed "listening" after curl was already 26% done, so the capture missed the start of the download, including the TCP handshake. It didn't matter for finding retransmissions, but it's why I couldn't directly see whether SACK was negotiated.
 
-### My "filtered" capture was identical to the original
-`lossfiltered.pcap` was byte-for-byte the same as `loss.pcap`. A Wireshark display filter only changes what's *shown*. To save just the filtered packets, use **File → Export Specified Packets → Displayed**.
 
 ### My own SSH session suffered too
 My SSH session to `client` crosses `enp0s8`, so it lost packets as well, and typing lagged. SSH runs over TCP, so it kept working, just slower: a small, live example of the same effect.
